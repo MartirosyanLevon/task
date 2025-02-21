@@ -31,4 +31,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: locust-test-report
-          path: locust_report*
+          path: performance/locust_report*
+
