@@ -1,7 +1,7 @@
 name: Locust Performance Test
 
 on:
-  workflow_dispatch:  # ✅ Allows manual execution from GitHub Actions UI
+  workflow_dispatch:  # ✅ Allows manual execution from GitHub Actions
 
 jobs:
   performance-test:
@@ -9,13 +9,12 @@ jobs:
 
     steps:
       - name: 🛠 Checkout Repository
-        uses: actions/checkout@v4  # ✅ Updated to latest version
+        uses: actions/checkout@v3
 
       - name: 🔥 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-          cache: "pip"  # ✅ Caches dependencies for faster installs
 
       - name: 📦 Install Dependencies
         run: |
@@ -24,5 +23,10 @@ jobs:
 
       - name: 🚀 Run Locust Performance Test
         run: |
-          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema \
-          -u 10 -r 2 --headless --run-time 1m --csv=locust_report || echo "Locust test failed, but continuing..."
+          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema -u 10 -r 2 --headless --run-time 1m --csv=locust_report
+
+      - name: 📂 Upload Locust Test Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: locust-test-report
+          path: locust_report*
