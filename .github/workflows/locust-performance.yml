@@ -24,8 +24,7 @@ jobs:
 
       - name: 🚀 Run Locust Performance Test
         run: |
-          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema \
-          -u 10 -r 2 --headless --run-time 1m --csv=locust_report || echo "Locust test failed, but continuing..."
+          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema -u 10 -r 2 --headless --run-time 1m --csv=locust_report || echo "Locust test failed, but continuing..."
 
       - name: 📂 Upload Locust Test Report
         uses: actions/upload-artifact@v4  # ✅ Updated to v4
