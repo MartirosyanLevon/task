@@ -9,12 +9,16 @@ jobs:
 
     steps:
       - name: 🛠 Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # ✅ Updated version
+
+      - name: 🔍 Debug: List Repository Files
+        run: ls -R  # ✅ Verify locustfile.py is inside the performance folder
 
       - name: 🔥 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
+          cache: "pip"
 
       - name: 📦 Install Dependencies
         run: |
@@ -23,10 +27,12 @@ jobs:
 
       - name: 🚀 Run Locust Performance Test
         run: |
-          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema -u 10 -r 2 --headless --run-time 1m --csv=locust_report
+          cd performance  # ✅ Change directory to where locustfile.py is
+          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema \
+          -u 10 -r 2 --headless --run-time 1m --csv=locust_report
 
       - name: 📂 Upload Locust Test Report
         uses: actions/upload-artifact@v4
         with:
           name: locust-test-report
-          path: locust_report*
+          path: performance/locust_report*  # ✅ Update path since reports are in 'performance/' folder
