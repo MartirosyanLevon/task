@@ -23,10 +23,6 @@ jobs:
 
       - name: 🚀 Run Locust Performance Test
         run: |
-          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema -u 10 -r 2 --headless --run-time 1m --csv=locust_report
+          locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema -u 10 -r 2 --headless --run-time 1m
 
-      - name: 📂 Upload Locust Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: locust-test-report
-          path: locust_report*
+
