@@ -31,5 +31,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-report
-          path: api/tests/report.html  # ✅ Updated path
+          path: api/report.html  # ✅ Updated path
           retention-days: 7
