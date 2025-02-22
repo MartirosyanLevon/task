@@ -43,5 +43,5 @@ def generate_invalid_login_data():
         ("", "SomePass123", 400),  # Empty email
         (faker.email(), "", 400),  # Empty password
         ("", "", 400),  # Both email and password empty
-        ("s", "", 400),  # Single-character email (invalid format, should fail validation)
+        ("s", "", 400),  # Single-character email (invalid format, should fail validation) This is  Potential Vulnerabilities
     ]
