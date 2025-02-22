@@ -1,6 +1,6 @@
 import requests
 
-from config import BASE_URL  # Import the centralized BASE_URL
+from api.config import BASE_URL  # Import the centralized BASE_URL
 
 
 class BaseAPI:
