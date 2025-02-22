@@ -25,11 +25,12 @@ jobs:
         run: |
           cd performance  # ✅ Change directory to where locustfile.py is
           locust -f locustfile.py --host=https://cinema.xdatagroup.dev/api/v1/cinema \
-          -u 10 -r 2 --headless --run-time 20s --csv=locust_report
+          -u 10 -r 2 --headless --run-time 20s --csv=locust_report \
+          --logfile locust.log --loglevel INFO  # ✅ Specify log file & level
 
-      - name: 📂 Upload Locust Test Report
+      - name: 📂 Upload Locust Log File
         uses: actions/upload-artifact@v4
         with:
-          name: locust-test-report
-          path: performance/locust_report*
+          name: locust-log-file
+          path: performance/locust.log
 
