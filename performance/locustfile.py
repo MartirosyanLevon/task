@@ -6,7 +6,7 @@ from logger_config import logger  # ✅ Import logger from separate config file
 fake = Faker()
 
 class UserBehavior(HttpUser):
-    wait_time = between(1, 3)  # Simulates real user wait time
+    wait_time = between(3, 5)  # Simulates real user wait time
     host = "https://cinema.xdatagroup.dev/api/v1/cinema"  # Set base URL
 
     @task
